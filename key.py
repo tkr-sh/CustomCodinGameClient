@@ -30,7 +30,7 @@ def on_release(key):
     if str(key) == "Key.ctrl_r": # Execute the code when clicked on RShift
         print("Executing the code. [FORCED]")
         client.exec(force=True)
-    if str(key) == "Key.f4":
+    if str(key) == "Key.f7":
         return False
 
 

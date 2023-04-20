@@ -41,6 +41,11 @@ class ExtendedString(str):
     
 
     # String specific
+    # Length case
+    @property
+    def len(self):
+        return ExtendedInt(len(self))
+    
     # Lower case
     @property
     def low(self):
@@ -205,6 +210,11 @@ class ExtendedString(str):
 
         return result
     
+    # Equivalent than the tr in ruby
+    def tr(self, old_chars, new_chars):
+        table = str.maketrans(dict(zip(old_chars, new_chars)))
+        return self.translate(table)
+    
 
     # Regex
     ## Get (equivalent of findall or scan)
@@ -218,8 +228,8 @@ class ExtendedString(str):
     
     ## Search
     def search(self, regex):
-        match_regex = search(regex, self)
-        return -1 if not match_regex else match_regex.start()
+        match_regex = search(regex,self)
+        return -1 if match_regex == None else match_regex.start()
 
 
         
@@ -227,7 +237,7 @@ class ExtendedString(str):
 
     # + Operator
     def __add__(self, other):
-        if isinstance(other, ExtendedString):
+        if isinstance(other, ExtendedString) or str(type(other)) == "<class 'str'>":
             return ExtendedString(f"{self}{other}")
         elif isinstance(other, int):
             return ExtendedString(f"{self}{other}")
@@ -237,7 +247,9 @@ class ExtendedString(str):
             return NotImplemented
     
     def __radd__(self, other):
-        if isinstance(other, int) or isinstance(other, ExtendedInt):
+        if isinstance(other, ExtendedString) or str(type(other)) == "<class 'str'>":
+            return ExtendedString(f"{other}{self}")
+        if isinstance(other, int) :
             return ExtendedString(f"{other}{self}")
         if isinstance(other, float):
             return ExtendedString(f"{other}{self}")

@@ -157,8 +157,11 @@ class CustomCodinGameClient:
             [self.handle_code]
         ).json()
 
-        if 'clash' in rep and 'players' in rep['clash']:
-            return rep
+        print(rep)
+        print(type(rep))
+
+        if 'clash' in rep.keys() and 'players' in rep['clash'].keys():
+            return rep['clash']['players']
         else:
             return None
 
@@ -395,12 +398,17 @@ class CustomCodinGameClient:
             # Get the player
             players = self.get_players()
 
-            if players != None and any(player['score'] == 100 for player in players if 'score' in player):
+            if players != None:
+                for player in players:
+                    print(type(player), player)
+
+            if players != None and any(player['score'] == 100 for player in players if 'score' in player.keys()):
                 wopen(f"https://www.codingame.com/multiplayer/clashofcode")
             else:
                 print(self.code)
                 rep = self.submit_solution()
                 print("========")
+                print(players)
                 print(rep)
                 print(rep.text)
                 print("========")
