@@ -93,7 +93,7 @@ with open("tmp/prog.py", "wt") as file:
 
     intial_code = open("prog.py").read()
 
-    default_code = f'''# !/https://github.com/aderepas
+    default_code = f'''#!/https://github.com/aderepas/CustomCodinGameClient
 
 """
 =========================================
