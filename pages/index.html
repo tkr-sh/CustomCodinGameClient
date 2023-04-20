@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&family=Roboto+Mono:wght@400;800&display=swap" rel="stylesheet">
+        <!-- Title -->
+        <title>CustomCodinGameClient</title>
+        <!-- Style -->
+        <style>
+            * {
+                font-family: 'Poppins', sans-serif;
+            }
+
+            html, body {
+                background-color: #111;
+                color: #fff;
+            }
+
+
+            h1 {
+                text-align: center;
+            }
+            h1::after {
+                content: "";
+                width: 90%;
+                height: 4px;
+                background-color: #fff6;
+                display: block;
+                margin-left: 5%;
+                border-radius: 5px;
+            }
+
+            h2 {
+                display: none;
+            }
+
+
+            .statement-body {
+                display: flex;    
+                flex-direction: column;
+                gap: 5px
+            }
+
+            .statement-section {
+                width: calc(100% - 40px);
+                border-radius: 5px;
+                padding-inline: 20px;
+                padding-block: 10px;
+                background-color: #222;
+            }
+
+            .statement-protocol {
+                display: flex;
+                flex-direction: column;
+                gap: 5px
+            }
+
+            .statement-inout {
+                display: flex;
+                width: 100%;
+                gap: 5px;
+            }
+
+            .statement-inout-in, .statement-inout-out {
+                width: 50%;
+                padding: 5px;
+                border-radius: 5px;
+                background-color: #181818;
+            }
+
+            pre {
+                margin: 0;
+                font-family: 'Roboto Mono', monospace;
+            }
+
+            var {
+                font-family: 'Roboto Mono', monospace;
+                font-weight: 700;
+                background-color: #444;
+                padding-inline: 4px;
+                border-radius: 3px;
+                font-style: normal;
+            }
+
+            .title {
+                font-weight: 800;
+                color: #fff9
+            }
+
+
+            /* List */
+            ul {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                padding: 0px;
+            }
+
+            li {
+                display: grid;
+                list-style: none;
+                gap: 5px;
+                border-radius: 5px;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 100px 100px;
+                padding: 5px;
+                padding-top: 30px;
+                grid-template-areas:
+                    "input output"
+                    "input output";
+                counter-increment: my-counter;
+                position: relative;
+            }
+
+            li.True {
+                background-color: #395;
+                grid-template-areas:
+                    "input output"
+                    "input got"
+            }
+
+            li.False {
+                background-color: #934;
+                order: -1;
+                grid-template-areas:
+                    "input output"
+                    "input got"
+            }
+
+            li::before {
+                content: "TEST CASE N°"counter(my-counter);
+                position: absolute;
+                color: #fffA;
+                top: 5px;
+                left: 5px;
+                font-weight: 800;
+                font-size: 12px;
+            }
+
+            li div {
+                border-radius: 5px;
+                background-color: #0003;
+                padding: 5px;
+                overflow: auto;
+                position: relative;
+                transition: .2s;
+                white-space: pre;
+                font-family: 'Roboto Mono', monospace;
+            }
+
+            li div:hover {
+                background-color: #fff1;
+            }
+
+            li div:hover::after{
+                color: #fff8;
+            }
+
+            li div::after {
+                content: "Input";
+                position: absolute;
+                bottom: 3px;
+                right: 3px;
+                transition: .2s;
+                color: #fff0;
+                font-size: 14px;
+                font-weight: 800;
+            }
+
+            .input {
+                grid-area: input;
+            }
+            .output {
+                grid-area: output;
+            }
+            .output::after {
+                content: "Expected"
+            }
+            .got {
+                grid-area: got;
+            }
+            .got::after {
+                content: "Got"
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            {{title}}
+        </h1>
+        {{description}}
+
+        <main>
+            <ul>
+                {{test_cases}}
+            </ul>
+        </main>
+    </body>
+</html>
